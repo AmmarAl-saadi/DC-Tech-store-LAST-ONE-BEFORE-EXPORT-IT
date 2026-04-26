@@ -1,9 +1,23 @@
 <template>
-  <div>
+  <div class="category-page-wrapper">
+    <!-- Category Hero Banner -->
+    <div v-if="category" class="category-hero-section" :style="heroStyle">
+      <div class="container-fluid hero-container">
+        <div class="hero-text-content">
+          <h1 class="hero-category-title">{{ categoryTitle }}</h1>
+          <div class="hero-breadcrumb-nav">
+             <nuxt-link to="/" class="breadcrumb-link">Home</nuxt-link>
+             <span class="breadcrumb-separator">/</span>
+             <span class="breadcrumb-current">{{ categoryTitle }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <product-list
       v-if="category"
       :result-title="categoryTitle"
-      :has-breadcrumb="true"
+      :has-breadcrumb="false"
       :categories="[category]"
       :fetching-product-data="fetchingProductData"
       @fetch-data="fetchingData"
@@ -84,6 +98,28 @@
     return category.value.title;
   });
 
+  const heroStyle = computed(() => {
+    const slug = category.value?.slug;
+    let bgImage = '/categories/cat_accessories.png'; // Fallback
+
+    if (slug === 'computer-systems') bgImage = '/categories/cat_computer_systems.png';
+    else if (slug === 'components') bgImage = '/categories/cat_components.png';
+    else if (slug === 'security-solutions') bgImage = '/categories/cat_security.png';
+    else if (slug === 'point-of-sale') bgImage = '/categories/cat_pos.png';
+    else if (slug === 'gaming') bgImage = '/categories/cat_gaming.png';
+    else if (slug === 'connectors') bgImage = '/categories/cat_connectors.png';
+    else if (slug === 'camera-recorder') bgImage = '/categories/cat_camera.png';
+    else if (slug === 'network') bgImage = '/categories/cat_network.png';
+    else if (slug === 'audio') bgImage = '/categories/cat_audio.png';
+    else if (slug === 'accessories') bgImage = '/categories/cat_accessories.png';
+
+    return {
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${bgImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    };
+  });
+
   const fetchingProductData = ref(false);
 
   const fetchingData = async () => {
@@ -100,3 +136,56 @@
   };
 
 </script>
+
+<style scoped>
+.category-hero-section {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+  background-color: #f4f4f4;
+}
+.hero-container {
+  width: 100%;
+}
+.hero-text-content {
+  color: #FFFFFF;
+}
+.hero-category-title {
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.hero-breadcrumb-nav {
+  font-size: 14px;
+  font-weight: 500;
+}
+.breadcrumb-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.breadcrumb-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+.breadcrumb-separator {
+  margin: 0 10px;
+  opacity: 0.6;
+}
+.breadcrumb-current {
+  opacity: 0.9;
+}
+
+@media (max-width: 576px) {
+  .category-hero-section {
+    height: 160px;
+  }
+  .hero-category-title {
+    font-size: 24px;
+  }
+}
+</style>

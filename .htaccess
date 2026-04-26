@@ -1,0 +1,44 @@
+<FilesMatch "Install.zip*">
+    Order Allow,Deny
+    Deny from All
+</FilesMatch>
+<FilesMatch "Update.zip*">
+    Order Allow,Deny
+    Deny from All
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Serve _nuxt assets from public folder
+    RewriteCond %{REQUEST_URI} ^/_nuxt/
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+    RewriteRule ^_nuxt/(.*)$ public/_nuxt/$1 [L]
+
+    # Serve frontend static files from public folder
+    RewriteCond %{REQUEST_URI} ^/(favicon|sw|workbox|manifest)
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# This domain inherits the "PHP" package.
+# php -- END cPanel-generated handler, do not edit

@@ -1,0 +1,1 @@
+import{aq as s,s as u,c as n,ar as i,n as r,as as c}from"./DLyu0_O1.js";const d=s(f=>{const{authenticated:t,token:a}=u(n()),o=c(),e=i(o.public.auth_token_key);if(e?.value)return t.value=!0,a.value=e.value,r("/")});export{d as default};

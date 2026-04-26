@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Serve _nuxt assets directly
+    RewriteCond %{REQUEST_URI} ^/_nuxt/
+    RewriteRule ^ - [L]
+
+    # Serve static files directly
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # All other requests → index.html (Nuxt SPA)
+    RewriteRule ^ index.html [L]
+</IfModule>

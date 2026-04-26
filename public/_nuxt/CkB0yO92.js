@@ -1,0 +1,1 @@
+import{R as s}from"./DLyu0_O1.js";const e=()=>({product:null,suggested:null}),u={updateWishlist(t){this.product={...this.product,wishlisted:t?.data?1:null}},setProduct(t){this.product=t},emptySuggestedProducts(){this.suggested=null}},d=s("detail",{state:e,actions:u});export{d as u};

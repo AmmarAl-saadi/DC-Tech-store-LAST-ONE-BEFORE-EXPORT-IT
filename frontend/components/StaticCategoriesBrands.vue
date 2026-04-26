@@ -52,22 +52,23 @@
 </template>
 
 <script setup>
-// Static categories with generated images
+// Static categories with premium generated images (White Background, Professional Design)
 const staticCategories = [
-  { name: 'Computer Systems', slug: 'computer-systems', image: '/categories/cat_computer_systems_1777204862889.png' },
-  { name: 'Components',       slug: 'components',       image: '/categories/cat_components_1777204878218.png' },
-  { name: 'Security Solutions', slug: 'security-solutions', image: '/categories/cat_security_1777204895204.png' },
-  { name: 'Point of Sale',    slug: 'point-of-sale',    image: '/categories/cat_pos_1777204907523.png' },
-  { name: 'Gaming',           slug: 'gaming',           image: '/categories/cat_gaming_1777204920446.png' },
-  { name: 'Connectors & Converters', slug: 'connectors', image: '/categories/cat_connectors_1777204934440.png' },
-  { name: 'Camera & Recorder', slug: 'camera-recorder', image: '/categories/cat_camera_1777204947794.png' },
-  { name: 'Network',          slug: 'network',          image: '/categories/cat_network_1777204962214.png' },
-  { name: 'Audio',            slug: 'audio',            image: '/categories/cat_audio_1777204976296.png' },
-  { name: 'Accessories',      slug: 'accessories',      image: '/categories/cat_accessories_1777204992716.png' },
+  { name: 'Computer Systems', slug: 'computer-systems', image: '/categories/cat_computer_systems.png' },
+  { name: 'Components',       slug: 'components',       image: '/categories/cat_components.png' },
+  { name: 'Security Solutions', slug: 'security-solutions', image: '/categories/cat_security.png' },
+  { name: 'Point of Sale',    slug: 'point-of-sale',    image: '/categories/cat_pos.png' },
+  { name: 'Gaming',           slug: 'gaming',           image: '/categories/cat_gaming.png' },
+  { name: 'Connectors & Converters', slug: 'connectors-and-convertors', image: '/categories/cat_connectors.png' },
+  { name: 'Camera & Recorder', slug: 'camera-and-recorder', image: '/categories/cat_camera.png' },
+  { name: 'Network',          slug: 'network',          image: '/categories/cat_network.png' },
+  { name: 'Audio',            slug: 'audio',            image: '/categories/cat_audio.png' },
+  { name: 'Accessories',      slug: 'accessories',      image: '/categories/cat_accessories.png' },
+  { name: 'Printers & Supplies', slug: 'printers--supplies', image: '/categories/cat_printers_supplies.png' },
+  { name: 'Cables',           slug: 'cables',           image: '/categories/cat_cables.png' },
 ];
 
 // Static brands — using text logos since image quota is limited
-// Images will use generated ones where available, otherwise elegant text fallback
 const staticBrands = [
   { name: 'HIKVISION',    slug: 'hikvision',   image: '/brands/brand_hikvision_black.png' },
   { name: 'GAMEMAX',      slug: 'gamemax',     image: '/brands/brand_gamemax_black.png' },
@@ -87,7 +88,6 @@ const staticBrands = [
   { name: 'DAHUA',        slug: 'dahua',       image: null },
 ].map(b => ({
   ...b,
-  // For brands without images, generate a styled fallback using a text-as-image service
   image: b.image ?? `https://placehold.co/100x52/1a1a1a/ffffff?text=${encodeURIComponent(b.name)}&font=montserrat`
 }));
 </script>
