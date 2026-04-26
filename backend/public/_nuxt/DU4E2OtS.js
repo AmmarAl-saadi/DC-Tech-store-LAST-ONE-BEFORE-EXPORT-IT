@@ -1,0 +1,1 @@
+import{at as n,s as l,B as r,L as c,C as f,a1 as d,M as g}from"./DY1rVxmo.js";const m=n(a=>{const{authenticated:o,token:s}=l(r()),i=f(),e=c(i.public.auth_token_key),t=d();if(!(e!=null&&e.value)){if(t!=null&&t.isClient){const u=a.fullPath;localStorage.setItem("redirection_url",u)}return o.value=!1,s.value=!1,g("/login")}});export{m as default};
