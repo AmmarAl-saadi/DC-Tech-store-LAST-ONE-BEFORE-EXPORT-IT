@@ -11,10 +11,34 @@
             <!-- Static Categories Icon Bar + Brands -->
             <StaticCategoriesBrands />
 
+            <!-- 2-Column Promo: Hardware + Gaming -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div style="background:#FFFFFF;border:1px solid #DDDDDD;padding:24px;" class="flex items-center justify-between group">
+                <div style="flex:1;">
+                  <h2 class="font-black leading-tight mb-2" style="font-size:24px;color:#154992;">COMPUTER<br>SYSTEMS</h2>
+                  <p class="mb-4 pr-4" style="font-size:13px;color:#666666;">Workstations, desktops, and customized PCs.</p>
+                  <nuxt-link to="/categories/computer-systems" class="font-bold uppercase inline-block border-b-2 border-transparent hover:border-[#154992] transition-all" style="font-size:12px;color:#154992;">FIND OUT MORE →</nuxt-link>
+                </div>
+                <div style="width:120px;height:120px;flex-shrink:0;">
+                  <img src="/categories/cat_computer_systems_1777204862889.png" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" alt="Hardware">
+                </div>
+              </div>
+              <div style="background:#FFFFFF;border:1px solid #DDDDDD;padding:24px;" class="flex items-center justify-between group">
+                <div style="flex:1;">
+                  <h2 class="font-black leading-tight mb-2" style="font-size:24px;color:#1F2937;">GAMING<br>SECTION</h2>
+                  <p class="mb-4 pr-4" style="font-size:13px;color:#666666;">Gaming Accessories, RGB Builds and Gears.</p>
+                  <nuxt-link to="/flash-sale" class="font-bold uppercase inline-block border-b-2 border-transparent hover:border-[#154992] transition-all" style="font-size:12px;color:#154992;">FIND OUT MORE →</nuxt-link>
+                </div>
+                <div style="width:120px;height:120px;flex-shrink:0;">
+                  <img src="/categories/cat_gaming_1777204920446.png" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" alt="Gaming">
+                </div>
+              </div>
+            </div>
+
             <!-- Flash Sales -->
             <div v-if="flashSales && flashSales.length" class="mt-4 mb-4" style="background:#FFFFFF;border:1px solid #DDDDDD;">
-              <div class="flex items-center justify-between px-4 py-2" style="border-bottom:2px solid #1D4ED8;">
-                <h2 class="font-bold uppercase" style="font-size:14px;color:#1D4ED8;">⚡ Flash Deals</h2>
+              <div class="flex items-center justify-between px-4 py-2" style="border-bottom:2px solid #154992;">
+                <h2 class="font-bold uppercase" style="font-size:14px;color:#154992;">⚡ Flash Deals</h2>
               </div>
               <div class="p-4">
                 <flashSale :flash-sales="flashSales" />
@@ -28,37 +52,11 @@
               </div>
             </div>
 
-            <!-- 2-Column Promo: Hardware + Gaming -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div style="background:#FFFFFF;border:1px solid #DDDDDD;padding:24px;" class="flex items-center justify-between group">
-                <div style="flex:1;">
-                  <h2 class="font-black leading-tight mb-2" style="font-size:24px;color:#1D4ED8;">COMPUTER<br>HARDWARE</h2>
-                  <p class="mb-4 pr-4" style="font-size:13px;color:#666666;">Workstations, storage, networking and peripherals.</p>
-                  <nuxt-link to="/categories" class="font-bold uppercase inline-block border-b-2 border-transparent hover:border-[#1D4ED8] transition-all" style="font-size:12px;color:#1D4ED8;">FIND OUT MORE →</nuxt-link>
-                </div>
-                <div style="width:120px;height:120px;flex-shrink:0;">
-                  <img src="/categories/cat_computer_systems_1777204862889.png" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" alt="Hardware">
-                </div>
-              </div>
-              <div style="background:#FFFFFF;border:1px solid #DDDDDD;padding:24px;" class="flex items-center justify-between group">
-                <div style="flex:1;">
-                  <h2 class="font-black leading-tight mb-2" style="font-size:24px;color:#1F2937;">GAMING<br>SECTION</h2>
-                  <p class="mb-4 pr-4" style="font-size:13px;color:#666666;">Gaming Accessories, RGB Builds and Gears.</p>
-                  <nuxt-link to="/flash-sale" class="font-bold uppercase inline-block border-b-2 border-transparent hover:border-[#1D4ED8] transition-all" style="font-size:12px;color:#1D4ED8;">FIND OUT MORE →</nuxt-link>
-                </div>
-                <div style="width:120px;height:120px;flex-shrink:0;">
-                  <img src="/categories/cat_gaming_1777204920446.png" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" alt="Gaming">
-                </div>
-              </div>
-            </div>
-
-
-
             <!-- Product Grid -->
             <div v-if="productGrid" class="mt-4" style="background:#FFFFFF;border:1px solid #DDDDDD;">
-              <div class="flex items-center justify-between px-4 py-2" style="border-bottom:2px solid #1D4ED8;">
-                <h2 class="font-bold uppercase" style="font-size:14px;color:#1D4ED8;">{{ productGrid.title }}</h2>
-                <nuxt-link class="font-bold uppercase hover:underline" style="font-size:12px;color:#1D4ED8;" :to="collectionLink(productGrid)">View All →</nuxt-link>
+              <div class="flex items-center justify-between px-4 py-2" style="border-bottom:2px solid #154992;">
+                <h2 class="font-bold uppercase" style="font-size:14px;color:#154992;">{{ productGrid.title }}</h2>
+                <nuxt-link class="font-bold uppercase hover:underline" style="font-size:12px;color:#154992;" :to="collectionLink(productGrid)">View All →</nuxt-link>
               </div>
               <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" style="border-top:1px solid #DDDDDD;border-left:1px solid #DDDDDD;">
                 <ProductTile
@@ -72,17 +70,7 @@
 
 
 
-            <!-- Discover -->
-            <div class="mt-4 mb-4" style="background:#FFFFFF;border:1px solid #DDDDDD;">
-              <div class="flex items-center justify-between px-4 py-2" style="border-bottom:2px solid #1D4ED8;">
-                <h2 class="font-bold uppercase" style="font-size:14px;color:#1D4ED8;">Recommended For You</h2>
-              </div>
-              <div class="p-4">
-                <LoadSection v-slot="{renderArea}" class="min-h-[400px]">
-                  <discover v-if="renderArea"/>
-                </LoadSection>
-              </div>
-            </div>
+
 
 
         </div>

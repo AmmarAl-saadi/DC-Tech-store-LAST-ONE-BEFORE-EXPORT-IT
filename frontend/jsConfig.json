@@ -6,6 +6,7 @@
     "all": "all",
     "products": "products",
     "categories": "categories",
+    "category": "category",
     "brands": "brands",
     "flashProducts": "flash-sale",
     "flashSales": "flash-sale",

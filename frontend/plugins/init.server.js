@@ -63,10 +63,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
 
     }catch(e){
-        showError({
-            statusCode: 400,
-            message: e.message
-        })
+        console.error("Initialization Error:", e.message);
+        // Avoid showError in plugin to prevent getActivePinia error if Pinia isn't ready
     }
 
 

@@ -5,11 +5,11 @@
     class="area home-section"
   >
 
-    <div class="flex items-center justify-between px-4 py-2 mb-4" style="border-bottom:2px solid #1D4ED8;">
-      <h2 class="font-bold uppercase" style="font-size:14px;color:#1D4ED8;">{{ title }}</h2>
+    <div class="flex items-center justify-between px-4 py-2 mb-4" style="border-bottom:2px solid #154992;">
+      <h2 class="font-bold uppercase" style="font-size:14px;color:#154992;">{{ title }}</h2>
       <nuxt-link
         class="font-bold uppercase hover:underline"
-        style="font-size:12px;color:#1D4ED8;"
+        style="font-size:12px;color:#154992;"
         :to="collectionLink(linkObj)"
       >
         View All →

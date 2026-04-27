@@ -657,6 +657,48 @@ class FrontendController extends Controller
     }
 
 
+    public function category(Request $request, $slug)
+    {
+        try {
+            $lang = $request->header('language');
+
+            $query = Category::where('slug', $slug)
+                ->where('status', Config::get('constants.status.PUBLIC'));
+
+            if ($lang) {
+                $query = $query->leftJoin('category_langs as cl', function ($join) use ($lang) {
+                    $join->on('cl.category_id', '=', 'categories.id');
+                    $join->where('cl.lang', $lang);
+                })->select('categories.*', 'cl.title', 'cl.meta_title', 'cl.meta_description', 'cl.meta_keywords');
+            }
+
+            $category = $query->first();
+
+            if (!$category) {
+                return response()->json(Validation::nothingFoundLang($lang));
+            }
+
+            // Fetch children (sub-categories)
+            $subCatsQuery = Category::where('parent', $category->id)
+                ->where('status', Config::get('constants.status.PUBLIC'));
+
+            if ($lang) {
+                $subCatsQuery = $subCatsQuery->leftJoin('category_langs as cl', function ($join) use ($lang) {
+                    $join->on('cl.category_id', '=', 'categories.id');
+                    $join->where('cl.lang', $lang);
+                })->select('categories.*', 'cl.title');
+            }
+
+            $category->sub_categories = $subCatsQuery->get();
+
+            return response()->json(new Response(null, $category));
+
+        } catch (\Exception $e) {
+            return response()->json(Validation::error(null, $e->getMessage()));
+        }
+    }
+
+
     public function brands(Request $request)
     {
         try {
@@ -2022,6 +2064,82 @@ class FrontendController extends Controller
 
         } catch (\Exception $e) {
 
+            if ($e instanceof \PDOException) {
+                return response()->json(Validation::error(null, explode('.', $e->getMessage())[0]));
+            } else {
+                return response()->json(Validation::error(null, $e->getMessage()));
+            }
+        }
+    }
+
+
+    public function priceQuotation(Request $request)
+    {
+        try {
+            $name         = $request->input('name');
+            $company      = $request->input('company', '');
+            $email        = $request->input('email');
+            $phone        = $request->input('phone');
+            $productTitle = $request->input('product_title', 'N/A');
+            $productPrice = $request->input('product_price', 'N/A');
+
+            // Save to contact_us table for admin visibility
+            ContactUs::create([
+                'name'    => $name . ($company ? " ({$company})" : ''),
+                'email'   => $email,
+                'phone'   => $phone,
+                'message' => "Price Quotation Request for: {$productTitle} | Price: {$productPrice} | Company: {$company}",
+            ]);
+
+            // Send confirmation email to customer
+            $setting = \App\Models\Setting::select('email')->first();
+            $fromEmail = $setting?->email ?? config('mail.from.address', 'noreply@dctechjo.com');
+
+            \Illuminate\Support\Facades\Mail::send(
+                [],
+                [],
+                function ($message) use ($email, $name, $productTitle, $productPrice, $company, $phone, $fromEmail) {
+                    $html = "
+                        <div style='font-family:Arial,sans-serif;max-width:600px;margin:0 auto;'>
+                            <div style='background:#1D4ED8;padding:24px;text-align:center;'>
+                                <h2 style='color:#fff;margin:0;'>Price Quotation Request Received</h2>
+                            </div>
+                            <div style='padding:30px;border:1px solid #e5e7eb;'>
+                                <p>Dear <strong>{$name}</strong>,</p>
+                                <p>Thank you for your interest! We have received your price quotation request and our team will contact you shortly.</p>
+                                <table style='width:100%;border-collapse:collapse;margin:20px 0;'>
+                                    <tr style='background:#f9fafb;'>
+                                        <td style='padding:10px;border:1px solid #e5e7eb;font-weight:bold;'>Product</td>
+                                        <td style='padding:10px;border:1px solid #e5e7eb;'>{$productTitle}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding:10px;border:1px solid #e5e7eb;font-weight:bold;'>Price</td>
+                                        <td style='padding:10px;border:1px solid #e5e7eb;'>{$productPrice}</td>
+                                    </tr>
+                                    <tr style='background:#f9fafb;'>
+                                        <td style='padding:10px;border:1px solid #e5e7eb;font-weight:bold;'>Company</td>
+                                        <td style='padding:10px;border:1px solid #e5e7eb;'>{$company}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding:10px;border:1px solid #e5e7eb;font-weight:bold;'>Phone</td>
+                                        <td style='padding:10px;border:1px solid #e5e7eb;'>{$phone}</td>
+                                    </tr>
+                                </table>
+                                <p>We will prepare your custom quote and get back to you as soon as possible.</p>
+                                <p style='margin-top:30px;color:#6b7280;font-size:13px;'>Best regards,<br><strong>Digital Creativity Tech Shop</strong></p>
+                            </div>
+                        </div>
+                    ";
+                    $message->to($email, $name)
+                            ->from($fromEmail, 'DC Tech Store')
+                            ->subject('Your Price Quotation Request – DC Tech Store')
+                            ->html($html);
+                }
+            );
+
+            return response()->json(new Response('', true));
+
+        } catch (\Exception $e) {
             if ($e instanceof \PDOException) {
                 return response()->json(Validation::error(null, explode('.', $e->getMessage())[0]));
             } else {

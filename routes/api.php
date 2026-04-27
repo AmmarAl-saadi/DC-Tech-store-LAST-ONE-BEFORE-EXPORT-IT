@@ -689,6 +689,7 @@ Route::group([
     Route::get('home', [FrontendController::class, 'home']);
     Route::get('products', [FrontendController::class, 'products']);
     Route::get('categories', [FrontendController::class, 'categories']);
+    Route::get('category/{slug}', [FrontendController::class, 'category']);
     Route::get('all', [FrontendController::class, 'all']);
     Route::get('brands', [FrontendController::class, 'brands']);
     Route::get('search', [FrontendController::class, 'search']);
@@ -698,6 +699,7 @@ Route::group([
     Route::get('suggested-products/{id}', [FrontendController::class, 'productSuggestion']);
     Route::get('page/{slug}', [FrontendController::class, 'page']);
     Route::post('contact', [FrontendController::class, 'contactUs']);
+    Route::post('quotation', [FrontendController::class, 'priceQuotation']);
     Route::post('email-subscription', [SubscriptionEmailsController::class, "emailSubscription"]);
     Route::post('track-order', [FrontendController::class, "trackOrder"]);
     Route::get('store', [FrontendController::class, "store"]);

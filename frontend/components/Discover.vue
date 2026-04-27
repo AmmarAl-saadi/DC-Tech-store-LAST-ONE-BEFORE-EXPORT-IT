@@ -6,8 +6,7 @@
       </div>
     </div>
     <div v-else-if="currentItems.length" class="bg-white border border-gray-200">
-      <!-- We use the existing products-slider component for consistency -->
-      <products-slider :collection="{ title: $t('discover.dailyDiscover'), products: currentItems }" />
+      <products-slider :collection="{ title: 'Discover Products', products: currentItems }" />
     </div>
   </div>
 </template>

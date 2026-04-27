@@ -84,6 +84,7 @@
               </button>
 
               <filter-category
+                v-if="!hideCategoryFilter"
                 ref="filterCategory"
                 :categories="categories"
                 @going-next="goingNext"
@@ -210,6 +211,10 @@
     resultTitle: {
       type: String,
       default: ''
+    },
+    hideCategoryFilter: {
+      type: Boolean,
+      default: false
     },
   });
 

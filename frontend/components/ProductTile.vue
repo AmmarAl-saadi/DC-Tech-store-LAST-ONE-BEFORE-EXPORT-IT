@@ -5,7 +5,7 @@
     <!-- Sale Badge -->
     <div v-if="badge || reducedPercent" class="absolute top-2 left-2 z-10">
       <span v-if="badge" class="text-white text-[11px] font-bold px-2 py-0.5 inline-block" style="background:#FF6600;">{{ badge }}</span>
-      <span v-else-if="reducedPercent" class="text-white text-[11px] font-bold px-2 py-0.5 inline-block" style="background:#1D4ED8;">-{{ reducedPercent }}%</span>
+      <span v-else-if="reducedPercent" class="text-white text-[11px] font-bold px-2 py-0.5 inline-block" style="background:#154992;">-{{ reducedPercent }}%</span>
     </div>
 
     <!-- Compare Btn -->
@@ -39,20 +39,13 @@
 
         <div class="mt-auto pt-2" style="border-top:1px solid #EEEEEE;">
           <div class="flex items-baseline gap-2 mb-2">
-            <span class="font-black" style="font-size:15px;color:#1D4ED8;">
+            <span class="font-black" style="font-size:15px;color:#154992;">
               <price-format :price="currentPricing" />
             </span>
             <span v-if="prevPrice" class="line-through" style="font-size:12px;color:#999999;">
               <price-format :price="prevPrice" />
             </span>
           </div>
-          <button
-            class="w-full text-white text-[12px] font-bold uppercase tracking-widest py-2 transition-colors hover:opacity-90"
-            style="background:#1D4ED8;border-radius:2px;"
-            @click.prevent
-          >
-            Add to Cart
-          </button>
         </div>
       </div>
     </nuxt-link>

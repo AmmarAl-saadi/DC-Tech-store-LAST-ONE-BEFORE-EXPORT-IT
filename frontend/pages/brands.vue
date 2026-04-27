@@ -3,7 +3,7 @@
     <div class="max-w-[980px] mx-auto px-4 py-8">
       
       <!-- Page Header -->
-      <div class="mb-8 border-b-2 border-[#1D4ED8] pb-4">
+      <div class="mb-8 border-b-2 border-[#154992] pb-4">
         <h1 class="text-2xl font-black text-slate-900 uppercase tracking-tight">Our Brands</h1>
         <p class="text-sm text-slate-500 mt-1">Discover the leading technology brands we partner with.</p>
       </div>
@@ -14,10 +14,10 @@
           v-for="brand in staticBrands"
           :key="brand.slug"
           :to="`/brands/${brand.slug}`"
-          class="brand-card group bg-white border border-gray-200 p-6 flex items-center justify-center h-28 transition-all hover:shadow-xl hover:border-[#1D4ED8] relative overflow-hidden"
+          class="brand-card group bg-white border border-gray-200 p-6 flex items-center justify-center h-28 transition-all hover:shadow-xl hover:border-[#154992] relative overflow-hidden"
         >
           <img :src="brand.image" :alt="brand.name" class="max-h-full max-w-full object-contain transform group-hover:scale-110 transition-transform duration-500 relative z-10">
-          <div class="absolute inset-0 bg-[#1D4ED8]/0 group-hover:bg-[#1D4ED8]/5 transition-colors"></div>
+          <div class="absolute inset-0 bg-[#154992]/0 group-hover:bg-[#154992]/5 transition-colors"></div>
         </nuxt-link>
       </div>
 

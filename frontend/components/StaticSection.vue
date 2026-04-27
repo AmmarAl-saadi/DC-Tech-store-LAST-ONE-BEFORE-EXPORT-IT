@@ -4,7 +4,7 @@
     <div style="background:#FFFFFF;border-bottom:1px solid #EEEEEE;">
       <div class="max-w-[980px] mx-auto px-4 py-3 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x" style="border-color:#EEEEEE;">
         <div class="flex items-center gap-3 px-4 py-2">
-          <div class="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full" style="background:#1D4ED8;">
+          <div class="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full" style="background:#154992;">
             <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 14.27l-4.77 2.44.91-5.32L2.27 7.62l5.34-.78z"/></svg>
           </div>
           <div>

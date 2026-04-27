@@ -93,7 +93,7 @@
     </footer>
 
     <!-- BOTTOM BLUE BAR -->
-    <div style="background:#1D4ED8;" class="py-2 relative">
+    <div style="background:#154992;" class="py-2 relative">
       <div class="max-w-[980px] mx-auto px-4 flex items-center justify-between">
         <p class="text-white text-center text-[12px] flex-grow">
           Copyright &copy; {{ current_year }} {{ site_setting?.copyright_text || 'DC Tech For Computers' }}
@@ -102,7 +102,7 @@
         <button
           @click="scrollToTop"
           class="w-7 h-7 bg-white flex items-center justify-center rounded-full flex-shrink-0 hover:opacity-90 transition-opacity"
-          style="color:#1D4ED8;"
+          style="color:#154992;"
           title="Back to top"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>

@@ -70,20 +70,20 @@ export default defineNuxtConfig({
                 extend: {
                   colors: {
                     primary: {
-                      DEFAULT: '#1D4ED8', // Logo Blue
+                      DEFAULT: '#154992', // Logo Blue
                       50: '#eff6ff',
                       100: '#dbeafe',
                       200: '#bfdbfe',
                       300: '#93c5fd',
                       400: '#60a5fa',
-                      500: '#3b82f6',
-                      600: '#1D4ED8', 
-                      700: '#1e40af',
+                      500: '#154992',
+                      600: '#154992', 
+                      700: '#0d3266',
                       800: '#1e3a8a',
                       900: '#1e3a8a',
                     },
                     secondary: {
-                      DEFAULT: '#3B82F6', // Tech Shop Blue
+                      DEFAULT: '#154992', // Tech Shop Blue
                     },
                     accent: {
                       DEFAULT: '#1F2937', // Charcoal Black

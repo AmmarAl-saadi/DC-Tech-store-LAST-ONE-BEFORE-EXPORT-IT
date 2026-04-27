@@ -29,7 +29,7 @@
                 :key="idx"
                 @click="selectSliderImage(idx)"
                 :style="idx === activeSlide
-                  ? 'width:32px;height:4px;background:#1D4ED8;border:none;cursor:pointer;transition:all 0.3s;'
+                  ? 'width:32px;height:4px;background:#154992;border:none;cursor:pointer;transition:all 0.3s;'
                   : 'width:16px;height:4px;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;'"
               ></button>
             </div>
@@ -48,8 +48,8 @@
                 <!-- Premium Overlay -->
                 <div class="hero-text-overlay">
                   <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-                    <span style="width:30px;height:2px;background:#1D4ED8;"></span>
-                    <span style="color:#1D4ED8;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;">Exclusive Deal</span>
+                    <span style="width:30px;height:2px;background:#154992;"></span>
+                    <span style="color:#154992;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;">Exclusive Deal</span>
                   </div>
                   <h2 style="color:#FFFFFF;font-size:42px;font-weight:900;line-height:1.1;margin:0 0 16px 0;text-transform:uppercase;">
                     {{ value.title }}
@@ -111,7 +111,7 @@
 
 .hero-cta-btn {
   display: inline-block;
-  background: #1D4ED8;
+  background: #154992;
   color: #FFFFFF;
   font-size: 13px;
   font-weight: 900;

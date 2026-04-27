@@ -14,12 +14,30 @@
       </div>
     </div>
 
+    <!-- Sub-categories Grid -->
+    <div v-if="hasSubCategories" class="container-fluid mb-40">
+      <div class="sub-category-grid">
+        <nuxt-link
+          v-for="sub in subCategories"
+          :key="sub.id"
+          :to="categoryLink(sub)"
+          class="sub-category-tile"
+        >
+          <div class="sub-cat-img-wrapper">
+            <img :src="getImageURL(sub.image)" :alt="sub.title" class="sub-cat-img" />
+          </div>
+          <span class="sub-cat-title">{{ sub.title }}</span>
+        </nuxt-link>
+      </div>
+    </div>
+
     <product-list
       v-if="category"
       :result-title="categoryTitle"
       :has-breadcrumb="false"
       :categories="[category]"
       :fetching-product-data="fetchingProductData"
+      :hide-category-filter="hasSubCategories"
       @fetch-data="fetchingData"
     />
   </div>
@@ -122,6 +140,20 @@
 
   const fetchingProductData = ref(false);
 
+  const subCategories = computed(() => {
+    return category.value?.child || category.value?.public_sub_categories || [];
+  });
+
+  const hasSubCategories = computed(() => {
+    return subCategories.value.length > 0;
+  });
+
+  const categoryLink = (item) => {
+    if (item) {
+      return `/all/${item?.slug}`
+    }
+  };
+
   const fetchingData = async () => {
     fetchingProductData.value = true;
 
@@ -187,5 +219,65 @@
   .hero-category-title {
     font-size: 24px;
   }
+}
+
+/* Sub-category Grid Styles */
+.sub-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.sub-category-tile {
+  background: #FFFFFF;
+  border: 1px solid #EEEEEE;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.sub-category-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  border-color: #154992;
+}
+
+.sub-cat-img-wrapper {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sub-cat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.sub-category-tile:hover .sub-cat-img {
+  transform: scale(1.1);
+}
+
+.sub-cat-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #333333;
+  line-height: 1.2;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
 }
 </style>

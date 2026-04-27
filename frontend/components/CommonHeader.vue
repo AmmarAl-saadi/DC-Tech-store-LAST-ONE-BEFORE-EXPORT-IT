@@ -27,7 +27,7 @@
               class="flex-grow px-3 text-sm text-gray-800 bg-white border-0 outline-none"
               style="border-radius:0;"
             >
-            <button type="submit" class="px-5 text-white text-xs font-bold uppercase tracking-widest flex-shrink-0" style="background:#1D4ED8;border-radius:0;">
+            <button type="submit" class="px-5 text-white text-xs font-bold uppercase tracking-widest flex-shrink-0" style="background:#154992;border-radius:0;">
               Search
             </button>
           </form>
@@ -64,17 +64,13 @@
           <nuxt-link to="/cart" class="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded transition-colors">
             <div class="relative">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-              <span v-if="cartCount" class="absolute -top-2 -right-2 text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full" style="background:#1D4ED8;">{{ cartCount }}</span>
+              <span v-if="cartCount" class="absolute -top-2 -right-2 text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full" style="background:#154992;">{{ cartCount }}</span>
             </div>
             <div class="text-white text-[13px] leading-tight">
               <div>Cart ({{ cartCount || 0 }})</div>
             </div>
           </nuxt-link>
 
-          <!-- Language -->
-          <div v-if="Object.keys(languages).length > 1" class="px-1">
-            <dropdown :selected-key="currentLanguage.code" :options="languages" :positionFixed="false" key-name="name" class="header-lang-dd" @clicked="selectedLanguage"/>
-          </div>
         </div>
       </div>
     </div>
@@ -86,17 +82,17 @@
       <div class="max-w-[980px] mx-auto px-4">
         <ul class="flex items-center overflow-x-auto no-scrollbar">
           <li>
-            <nuxt-link to="/" class="block px-4 py-3 text-white text-[13px] font-bold uppercase tracking-wide whitespace-nowrap hover:bg-[#1D4ED8] transition-colors" active-class="!bg-[#1D4ED8]">
+            <nuxt-link to="/" class="block px-4 py-3 text-white text-[13px] font-bold uppercase tracking-wide whitespace-nowrap hover:bg-[#154992] transition-colors" active-class="!bg-[#154992]">
               Home
             </nuxt-link>
           </li>
           <li v-for="(item, i) in headerLeft" :key="`l-${i}`">
-            <nuxt-link :to="getUrl(item)" class="block px-4 py-3 text-white text-[13px] font-bold uppercase tracking-wide whitespace-nowrap hover:bg-[#1D4ED8] transition-colors">
+            <nuxt-link :to="getUrl(item)" class="block px-4 py-3 text-white text-[13px] font-bold uppercase tracking-wide whitespace-nowrap hover:bg-[#154992] transition-colors">
               {{ getTitle(item) }}
             </nuxt-link>
           </li>
           <li v-for="(item, i) in headerRight" :key="`r-${i}`">
-            <nuxt-link :to="getUrl(item)" class="block px-4 py-3 text-white text-[13px] font-bold uppercase tracking-wide whitespace-nowrap hover:bg-[#1D4ED8] transition-colors">
+            <nuxt-link :to="getUrl(item)" class="block px-4 py-3 text-white text-[13px] font-bold uppercase tracking-wide whitespace-nowrap hover:bg-[#154992] transition-colors">
               {{ getTitle(item) }}
             </nuxt-link>
           </li>
@@ -205,48 +201,3 @@
   });
   onUnmounted(() => { if (observer) observer.disconnect(); });
 </script>
-
-<style scoped>
-.header-lang-dd :deep(> span) {
-  background: #1D4ED8 !important;
-  color: #FFFFFF !important;
-  border: none !important;
-  border-radius: 6px !important;
-  font-weight: 600 !important;
-  height: 36px !important;
-  line-height: 36px !important;
-  padding: 0 16px !important;
-  font-family: inherit !important;
-  font-size: 13px !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.header-lang-dd :deep(.ignore-click) {
-  filter: brightness(0) invert(1) !important;
-  margin-left: 8px !important;
-}
-
-.header-lang-dd :deep(.dropdown-inner) {
-  background: #FFFFFF !important;
-  color: #333333 !important;
-  border: 1px solid #EEEEEE !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-  border-radius: 6px !important;
-  margin-top: 4px !important;
-}
-
-.header-lang-dd :deep(li) {
-  font-size: 13px !important;
-  padding: 10px 16px !important;
-}
-
-.header-lang-dd :deep(li:hover) {
-  background: #F0F7FF !important;
-  color: #1D4ED8 !important;
-}
-
-.header-lang-dd :deep(.active) {
-  background: #1D4ED8 !important;
-  color: #FFFFFF !important;
-}
-</style>

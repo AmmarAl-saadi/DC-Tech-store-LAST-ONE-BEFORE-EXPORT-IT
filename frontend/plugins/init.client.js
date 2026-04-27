@@ -79,9 +79,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     setCommonData(responseData)
 
   } catch (e) {
-    showError({
-      statusCode: 400,
-      message: e.message
-    })
+    console.error("Initialization Error (Client):", e.message);
   }
 });
