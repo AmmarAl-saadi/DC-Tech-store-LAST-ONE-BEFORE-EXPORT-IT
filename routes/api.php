@@ -92,6 +92,15 @@ Route::get('/clear-cache', function() {
     return "Cache is cleared";
 });
 
+Route::get('/run-migration', function() {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return "Migration successful: " . \Illuminate\Support\Facades\Artisan::output();
+    } catch (\Exception $e) {
+        return "Migration failed: " . $e->getMessage();
+    }
+});
+
 
 Route::post('install', [InstallController::class, 'installPost']);
 Route::post('check-db', [InstallController::class, 'checkDb']);
