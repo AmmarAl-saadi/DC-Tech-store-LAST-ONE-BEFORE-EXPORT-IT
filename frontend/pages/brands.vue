@@ -13,10 +13,10 @@
         <nuxt-link
           v-for="brand in staticBrands"
           :key="brand.slug"
-          :to="`/brands/${brand.slug}`"
-          class="brand-card group bg-white border border-gray-200 p-6 flex items-center justify-center h-28 transition-all hover:shadow-xl hover:border-[#154992] relative overflow-hidden"
+          :to="`/${brand.slug}/brand?brand=${brand.id}`"
+          class="brand-card group bg-white border border-gray-200 p-4 flex items-center justify-center h-36 transition-all hover:shadow-xl hover:border-[#154992] relative overflow-hidden"
         >
-          <img :src="brand.image" :alt="brand.name" class="max-h-full max-w-full object-contain transform group-hover:scale-110 transition-transform duration-500 relative z-10">
+          <img :src="brand.image" :alt="brand.name" class="max-h-full max-w-full object-contain transform scale-125 group-hover:scale-150 transition-transform duration-500 relative z-10">
           <div class="absolute inset-0 bg-[#154992]/0 group-hover:bg-[#154992]/5 transition-colors"></div>
         </nuxt-link>
       </div>
@@ -47,27 +47,23 @@
 
   // Static brands list matching the homepage
   const staticBrands = [
-    { name: 'HIKVISION',    slug: 'hikvision',   image: '/brands/brand_hikvision_black.png' },
-    { name: 'GAMEMAX',      slug: 'gamemax',     image: '/brands/brand_gamemax_black.png' },
-    { name: 'AULA',         slug: 'aula',        image: null },
-    { name: 'DRAGON WAR',   slug: 'dragon-war',  image: null },
-    { name: 'DATALOGIC',    slug: 'datalogic',   image: null },
-    { name: 'EZVIZ',        slug: 'ezviz',       image: null },
-    { name: 'GLINK',        slug: 'glink',       image: null },
-    { name: 'HIKSEMI',      slug: 'hiksemi',     image: null },
-    { name: 'JEQANG',       slug: 'jeqang',      image: null },
-    { name: 'MARVO',        slug: 'marvo',       image: null },
-    { name: 'TP-LINK',      slug: 'tp-link',     image: '/brands/brand_tplink_black.png' },
-    { name: 'TRANSCEND',    slug: 'transcend',   image: null },
-    { name: 'UNIQ',         slug: 'uniq',        image: null },
-    { name: 'XTRIKE ME',    slug: 'xtrike-me',   image: null },
-    { name: 'YORO',         slug: 'yoro',        image: null },
-    { name: 'DAHUA',        slug: 'dahua',       image: null },
-  ].map(b => ({
-    ...b,
-    // Use the same black design for placeholders
-    image: b.image ?? `https://placehold.co/100x52/1a1a1a/ffffff?text=${encodeURIComponent(b.name)}&font=montserrat`
-  }));
+    { id: 9442200, name: 'HIKVISION', slug: 'HIKVISION', image: '/uploads/brand-1776677217-2.png' },
+    { id: 9442203, name: 'GAMEMAX', slug: 'gamemax', image: '/uploads/brand-1776677854-7.png' },
+    { id: 9442213, name: 'AULA', slug: 'aula', image: '/uploads/brand-1776856858-9.png' },
+    { id: 9442214, name: 'DRAGON WAR', slug: 'dragon-war', image: '/uploads/brand-1776856909-7.png' },
+    { id: 9442215, name: 'DATALOGIC', slug: 'datalogic', image: '/uploads/brand-1776856976-5.png' },
+    { id: 9442216, name: 'ezviz', slug: 'ezviz', image: '/uploads/brand-1776857055-3.png' },
+    { id: 9442217, name: 'GLINK', slug: 'glink', image: '/uploads/brand-1776857144-7.png' },
+    { id: 9442218, name: 'HIKSEMI', slug: 'hiksemi', image: '/uploads/brand-1776857176-8.png' },
+    { id: 9442219, name: 'JEQANG', slug: 'jeqang', image: '/uploads/brand-1776857213-5.png' },
+    { id: 9442220, name: 'MARVO', slug: 'marvo', image: '/uploads/brand-1776857238-5.png' },
+    { id: 9442221, name: 'tp-link', slug: 'tp-link', image: '/uploads/brand-1776857270-7.png' },
+    { id: 9442222, name: 'Transcend', slug: 'transcend', image: '/uploads/brand-1776857303-1.png' },
+    { id: 9442223, name: 'UNIQ', slug: 'uniq', image: '/uploads/brand-1776857360-6.png' },
+    { id: 9442224, name: 'XTRIKE ME', slug: 'xtrike-me', image: '/uploads/brand-1776857403-8.png' },
+    { id: 9442225, name: 'YORO', slug: 'yoro', image: '/uploads/brand-1776857464-9.png' },
+    { id: 9442226, name: 'dahua', slug: 'dahua', image: '/uploads/brand-1776857528-9.png' }
+  ];
 </script>
 
 <style scoped>

@@ -93,10 +93,6 @@
                 ref="filterPriceRef"
                 @reset-route="changeRoute"
               />
-              <filter-rating
-                ref="filterRatingRef"
-                @reset-route="changeRoute"
-              />
               <filter-brand
                 ref="filterBrand"
                 :brands="brands"
@@ -105,11 +101,6 @@
               <filter-collection
                 ref="filterCollection"
                 :collections="collections"
-                @reset-route="changeRoute"
-              />
-              <filter-shipping
-                ref="filterShippingRef"
-                :shipping-rules="shippingRules"
                 @reset-route="changeRoute"
               />
             </div>
@@ -237,18 +228,11 @@
     featured: {title: t('featured.featured')},
     price_low_to_high: {title: t('listingLayout.priceLowToHigh')},
     price_high_to_low: {title: t('listingLayout.priceHighToLow')},
-    avg_customer_review: {title: t('listingLayout.avgCustomerReview')},
   });
   const sortby = ref(route.query.sortby || '');
 
   const filteredCount = computed(() => {
     let count = 0
-    if (route.query?.shipping) {
-      count++
-    }
-    if (route.query?.rating) {
-      count++
-    }
     if (route.query?.min) {
       count++
     }
@@ -322,9 +306,7 @@
 
   const clearQuery = () => {
     filterPriceRef.value?.clearPrice()
-    filterShippingRef.value?.clearShipping()
     clearSortby()
-    filterRatingRef.value?.clearRating()
     if (isXsDevice.value) {
       closeFilter();
     }

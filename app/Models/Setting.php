@@ -35,4 +35,12 @@ class Setting extends Model
     protected $hidden = [
         'admin_id'
     ];
+
+    public function getCurrencyIconAttribute($value)
+    {
+        if ($value == 'د.أ.' || $value == 'JOD') {
+            return 'JOD ';
+        }
+        return $value;
+    }
 }

@@ -5,6 +5,19 @@ import {showError} from "nuxt/app";
 import {useUtils} from "../composables/useUtils";
 import {storeToRefs} from "pinia";
 
+const normalizeCurrencyIcon = (currencyIcon) => {
+  if (!currencyIcon) {
+    return currencyIcon;
+  }
+
+  const normalized = `${currencyIcon}`.replace(/\s+/g, '');
+  if (normalized === '\u062F.\u0623.' || normalized === '\u062F.\u0623') {
+    return 'JOD';
+  }
+
+  return currencyIcon;
+};
+
 const state = () => ({
   location: {countryCode: 'AF', region: 'BDS'},
   site_setting: {},
@@ -50,6 +63,7 @@ const actions = {
 
     if (common?.setting) {
       this.setting = common?.setting
+      this.setting.currency_icon = normalizeCurrencyIcon(this.setting.currency_icon)
 
       this.location = {
         countryCode: common?.setting?.default_country,

@@ -61,6 +61,7 @@ use App\Http\Controllers\ProductImageAttributesController;
 use App\Http\Controllers\PosSettingsController;
 use App\Http\Controllers\PosOrdersController;
 use App\Http\Controllers\PluginsController;
+use App\Http\Controllers\QuotationsController;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\View;
@@ -479,6 +480,15 @@ Route::group([
             Route::get('find/{id}', [ContactUsController::class, 'find']);
             Route::post('action/{contactUs?}', [ContactUsController::class, 'action']);
             Route::delete('delete/{id}', [ContactUsController::class, 'delete']);
+        });
+
+        Route::group([
+            'prefix' => 'quotation'
+        ], function (){
+            Route::get('all', [QuotationsController::class, 'all']);
+            Route::get('find/{id}', [QuotationsController::class, 'find']);
+            Route::post('action/{quotation?}', [QuotationsController::class, 'action']);
+            Route::delete('delete/{id}', [QuotationsController::class, 'delete']);
         });
 
         Route::group([

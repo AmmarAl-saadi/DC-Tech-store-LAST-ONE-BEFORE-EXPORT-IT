@@ -49,11 +49,11 @@
         <!-- Pricing -->
         <div class="mt-auto pt-2 flex items-center justify-between">
           <div class="flex flex-col">
-            <span class="text-[11px] text-slate-300 line-through font-medium">
+            <span class="strike-through" style="font-size:10px;color:#999999;text-decoration:line-through !important;">
               <price-format :price="prevPrice" />
             </span>
             <div class="flex items-center gap-2">
-              <span class="text-lg font-black text-blue-600 tracking-tight">
+              <span class="font-black text-black tracking-tight whitespace-nowrap" style="font-size:14px;">
                 <price-format :price="reducedPrice" />
               </span>
               <span class="text-[9px] font-black bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">

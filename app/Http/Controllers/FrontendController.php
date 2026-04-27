@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ContactUs;
+use App\Models\Quotation;
 use App\Models\CustomScript;
 use App\Models\FlashSale;
 use App\Models\FlashSaleProduct;
@@ -213,14 +214,43 @@ class FrontendController extends Controller
 
             if ($request->category) {
                 if ($category) {
-                    $productCategories = ProductCategory::where('category_id', $category->id)->get();
+                    $categoryIds = [$category->id];
+                    $pendingParents = [$category->id];
 
-                    $productIds = [];
-                    foreach ($productCategories as $i) {
-                        array_push($productIds, $i->product_id);
+                    // Include all descendant categories so parent pages show child products too.
+                    while (!empty($pendingParents)) {
+                        $children = Category::whereIn('parent', $pendingParents)
+                            ->pluck('id')
+                            ->toArray();
+
+                        $newChildren = array_values(array_diff($children, $categoryIds));
+                        if (empty($newChildren)) {
+                            break;
+                        }
+
+                        $categoryIds = array_merge($categoryIds, $newChildren);
+                        $pendingParents = $newChildren;
                     }
 
-                    $query = $query->whereIn('products.id', $productIds);
+                    $productIds = ProductCategory::whereIn('category_id', $categoryIds)
+                        ->pluck('product_id')
+                        ->toArray();
+
+                    $legacySubCategoryIds = SubCategory::whereIn('category_id', $categoryIds)
+                        ->pluck('id')
+                        ->toArray();
+
+                    $query = $query->where(function ($q) use ($productIds, $categoryIds, $legacySubCategoryIds) {
+                        $q->whereIn('products.category_id', $categoryIds);
+
+                        if (!empty($productIds)) {
+                            $q->orWhereIn('products.id', $productIds);
+                        }
+
+                        if (!empty($legacySubCategoryIds)) {
+                            $q->orWhereIn('products.subcategory_id', $legacySubCategoryIds);
+                        }
+                    });
                 } else {
                     $subCatQuery = Category::query();
                     if (isset($lang) && $lang) {
@@ -232,13 +262,17 @@ class FrontendController extends Controller
                     
                     $subCat = $subCatQuery->where('slug', $request->category)->first();
                     if ($subCat) {
-                        $productCategories = ProductCategory::where('category_id', $subCat->id)->get();
-                        $productIds = [];
-                        foreach ($productCategories as $i) {
-                            array_push($productIds, $i->product_id);
-                        }
+                        $productIds = ProductCategory::where('category_id', $subCat->id)
+                            ->pluck('product_id')
+                            ->toArray();
 
-                        $query = $query->whereIn('products.id', $productIds);
+                        $query = $query->where(function ($q) use ($productIds, $subCat) {
+                            $q->where('products.category_id', $subCat->id);
+
+                            if (!empty($productIds)) {
+                                $q->orWhereIn('products.id', $productIds);
+                            }
+                        });
                         $category = $subCat;
                     } else {
                         // Category not found
@@ -2083,12 +2117,23 @@ class FrontendController extends Controller
             $productTitle = $request->input('product_title', 'N/A');
             $productPrice = $request->input('product_price', 'N/A');
 
-            // Save to contact_us table for admin visibility
+            // Save to quotations table (for clean data)
+            Quotation::create([
+                'name'          => $name,
+                'company'       => $company,
+                'email'         => $email,
+                'phone'         => $phone,
+                'product_title' => $product_title ?? $productTitle,
+                'product_price' => $product_price ?? $productPrice,
+            ]);
+
+            // ALSO Save to contact_us table so it shows up in the existing Admin Panel
             ContactUs::create([
-                'name'    => $name . ($company ? " ({$company})" : ''),
+                'name'    => "[QUOTATION] " . $name . ($company ? " ({$company})" : ''),
                 'email'   => $email,
                 'phone'   => $phone,
-                'message' => "Price Quotation Request for: {$productTitle} | Price: {$productPrice} | Company: {$company}",
+                'subject' => "Price Quotation: {$productTitle}",
+                'message' => "PRODUCT: {$productTitle}\nPRICE: {$productPrice}\nCOMPANY: {$company}\nPHONE: {$phone}",
             ]);
 
             // Send confirmation email to customer

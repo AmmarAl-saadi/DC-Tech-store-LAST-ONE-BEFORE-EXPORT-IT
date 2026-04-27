@@ -767,6 +767,15 @@ class Validation
         return self::validationMessage($request, $rules);
     }
 
+    public static function quotation($request)
+    {
+        $rules = [
+            'id' => 'required'
+        ];
+
+        return self::validationMessage($request, $rules);
+    }
+
     public static function shippingRule($request)
     {
         $rules = [

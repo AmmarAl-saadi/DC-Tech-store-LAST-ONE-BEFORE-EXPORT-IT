@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- NEWSLETTER -->
-    <subscription />
 
     <!-- MAIN FOOTER  bg:#2D2D2D -->
     <footer style="background:#2D2D2D;color:#CCCCCC;">
@@ -62,29 +60,22 @@
           <div>
             <!-- Logo -->
             <div class="mb-4">
-              <img v-if="!showTextLogo" src="/images/logo.png" class="h-10 w-auto mb-2" alt="DC Tech Logo" @error="handleLogoError">
+              <img v-if="!showTextLogo" src="/images/logo.png" class="max-h-16 w-auto mb-2" alt="DC Tech Logo" @error="handleLogoError">
               <div v-else class="flex flex-col">
                 <div class="text-white font-black text-lg leading-tight italic">DIGITAL CREATIVITY</div>
                 <div class="text-primary-400 font-bold text-[10px] tracking-widest uppercase">TECH SHOP</div>
               </div>
             </div>
             <!-- Address -->
-            <div class="space-y-1 text-[12px]" style="color:#AAAAAA;">
-              <p>{{ setting?.address || 'Amman, Jordan' }}</p>
+            <div class="space-y-1 text-[12px]" style="color:#FFFFFF !important;">
+              <p style="color:#FFFFFF !important;">{{ setting?.address || 'Amman, Jordan' }}</p>
               <div v-if="setting?.phone" class="mt-2">
                 <span class="text-white font-bold">Phone: </span>
-                <a :href="`tel:${setting.phone}`" class="hover:text-white">{{ setting.phone }}</a>
+                <a :href="`tel:${setting.phone}`" class="hover:text-white" style="color:#FFFFFF;">{{ setting.phone }}</a>
               </div>
-              <div v-if="setting?.email" class="mt-1">
-                <span class="text-white font-bold">Email: </span>
-                <a :href="`mailto:${setting.email}`" class="hover:text-white">{{ setting.email }}</a>
+              <div class="mt-2">
+                <a href="mailto:info@dctechjo.com" class="hover:text-white" style="color:#FFFFFF !important; font-size: 15px; font-weight: bold;">info@dctechjo.com</a>
               </div>
-            </div>
-            <!-- Payment Icons -->
-            <div v-if="payment?.length" class="mt-4 flex flex-wrap gap-2">
-              <a v-for="(item, i) in payment" :key="i" :href="item.link" target="_blank" class="flex items-center justify-center p-1" style="background:#FFFFFF;border:1px solid #444;width:40px;height:26px;">
-                <ImageLazy :lazy-src="getImageURL(item.image)" class="max-h-full max-w-full object-contain"/>
-              </a>
             </div>
           </div>
 

@@ -120,9 +120,9 @@ export default {
   methods: {
     priceFormat(currencyPosition, currencyIcon, price, setting) {
       if (parseInt(currencyPosition) === this.currencyPositionsIn.PRE) {
-        return currencyIcon + this.decimalSeparator(price, setting.decimal_format)
+        return currencyIcon + ' ' + this.decimalSeparator(price, setting.decimal_format)
       }
-      return this.decimalSeparator(price, setting.decimal_format) + currencyIcon
+      return this.decimalSeparator(price, setting.decimal_format) + ' ' + currencyIcon
     },
     decimalSeparator(price, decimalSeparator = 'en-US') {
       if(!decimalSeparator){
@@ -236,7 +236,7 @@ export default {
     },
     productLink(item) {
       if (item) {
-        return `/${item?.slug}/product/${item?.id}`
+        return `/${item?.category?.slug}/product/${item?.id}`
       }
     },
     isMobile() {

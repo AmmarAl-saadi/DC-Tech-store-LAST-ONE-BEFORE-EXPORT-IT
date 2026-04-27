@@ -29,7 +29,7 @@ export function useUtils() {
 
   const productLink = (item) => {
     if (item) {
-      return `/${item?.slug}/product/${item?.id}`
+      return `/${item?.category?.slug}/product/${item?.id}`
     }
   };
 

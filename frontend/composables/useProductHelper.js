@@ -34,9 +34,9 @@ export function useProductHelper() {
     const {currencyPositionsIn} = useConstants();
 
     if (parseInt(setting.currency_position) === currencyPositionsIn.PRE) {
-      return currencyIcon + decimalSeparator(price, setting.decimal_format)
+      return currencyIcon + ' ' + decimalSeparator(price, setting.decimal_format)
     }
-    return `${decimalSeparator(price, setting.decimal_format)}${currencyIcon}`;
+    return `${decimalSeparator(price, setting.decimal_format)} ${currencyIcon}`;
   };
 
 

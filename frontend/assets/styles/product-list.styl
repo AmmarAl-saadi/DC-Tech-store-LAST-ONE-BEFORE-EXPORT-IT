@@ -75,9 +75,16 @@
       min-height 500px
 
     .tile-container
+      display grid
+      grid-template-columns repeat(5, 1fr)
+      border-left 1px solid #ddd
+      border-top 1px solid #ddd
       .p-tile
-        min-width 20%
-        width 20%
+        width 100%
+        min-width 0
+        padding 0
+        border-right 1px solid #ddd
+        border-bottom 1px solid #ddd
 
   .left-area
     min-width 250px
@@ -151,9 +158,7 @@
   .product-list
     .main-content
       .tile-container
-        .p-tile
-          min-width 33.33%
-          width 33.33%
+        grid-template-columns repeat(3, 1fr)
 
 @media only screen and (max-width: 992px)
   .price-search
@@ -167,9 +172,7 @@
     padding-left 0
     .main-content
       .tile-container
-        .p-tile
-          min-width 50%
-          width 50%
+        grid-template-columns repeat(2, 1fr)
 
     .left-area
       min-width 220px

@@ -100,10 +100,11 @@
         </div>
 
         <!-- Add to Cart / Buy Now buttons -->
-        <div class="flex-sm mlr-sm--2-5">
+        <div class="mb-10">
           <ajax-button
             id="add-to-cart"
-            class="w-100 primary-btn mtb-10"
+            class="w-100 primary-btn"
+            style="background: #154992 !important; margin: 0 !important;"
             :disabled="disabled"
             type="button"
             :fetching-data="ajaxing"
@@ -114,7 +115,7 @@
         </div>
 
         <!-- Get Price Quotation Button -->
-        <div class="mt-5 mb-5">
+        <div class="mb-10">
           <button
             id="get-price-quotation-btn"
             type="button"
@@ -124,6 +125,13 @@
             Get Price Quotation
           </button>
         </div>
+
+        <client-only>
+          <social-share
+            class="mb-10"
+            :product="product"
+          />
+        </client-only>
 
         <div class="pos-rel inline">
           <button
@@ -153,13 +161,6 @@
           </pop-over>
         </div>
 
-        <client-only>
-          <p class="f-9">
-            {{ $t('detailRight.arrives') }} :
-            <span class="color-lite semi-bold">
-              {{arrivesAt}}
-            </span>
-          </p>
           <ajax-button
             class="mt-15 w-100 outline-btn hide-sm"
             type="button"
@@ -169,20 +170,9 @@
             :loading-text="!isWishListed ? $t('detailRight.addingToWishlist') : $t('detailRight.removingFromWishlist')"
             :text="!isWishListed ? $t('detailRight.addToWishlist') : $t('detailRight.removeFromWishlist')"
           />
-        </client-only>
       </div>
 
-      <client-only>
-        <social-share
-          class="hide-sm mb-15"
-          :product="product"
-        />
-      </client-only>
 
-      <store-tile
-        class="mt-10"
-        :store="product.store"
-      />
 
     </div><!-- detail-right -->
 
@@ -459,25 +449,23 @@
 /* ── Quotation Button ─────────────────────────────────────── */
 .quotation-btn {
   width: 100%;
-  padding: 13px 20px;
-  background: linear-gradient(135deg, #16a34a, #15803d);
+  height: 44px;
+  background: #313131;
   color: #ffffff;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 10px;
+  font-size: 1em;
   font-weight: 700;
-  letter-spacing: 0.03em;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.30);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .quotation-btn:hover {
-  background: linear-gradient(135deg, #15803d, #166534);
-  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.45);
+  background: #1a1a1a;
   transform: translateY(-1px);
 }
 
@@ -580,15 +568,15 @@
   width: 100%;
 }
 .quotation-field input:focus {
-  border-color: #16a34a;
-  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+  border-color: #313131;
+  box-shadow: 0 0 0 3px rgba(49, 49, 49, 0.15);
 }
 
 /* ── Submit ─────────────────────────────────────────────── */
 .quotation-submit {
   margin-top: 4px;
   padding: 13px;
-  background: linear-gradient(135deg, #16a34a, #15803d);
+  background: #313131;
   color: white;
   border: none;
   border-radius: 6px;
@@ -601,7 +589,7 @@
   justify-content: center;
 }
 .quotation-submit:hover:not(:disabled) {
-  background: linear-gradient(135deg, #15803d, #166534);
+  background: #1a1a1a;
   transform: translateY(-1px);
 }
 .quotation-submit:disabled {
@@ -626,7 +614,7 @@
 .quotation-success-msg {
   font-size: 15px;
   font-weight: 700;
-  color: #16a34a;
+  color: #313131;
   line-height: 1.6;
 }
 </style>

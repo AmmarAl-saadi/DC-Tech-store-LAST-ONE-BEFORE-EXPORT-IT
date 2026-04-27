@@ -38,12 +38,12 @@
         </h5>
 
         <div class="mt-auto pt-2" style="border-top:1px solid #EEEEEE;">
-          <div class="flex items-baseline gap-2 mb-2">
-            <span class="font-black" style="font-size:15px;color:#154992;">
-              <price-format :price="currentPricing" />
-            </span>
-            <span v-if="prevPrice" class="line-through" style="font-size:12px;color:#999999;">
+          <div class="flex flex-col mb-2">
+            <span v-if="prevPrice" class="strike-through" style="font-size:10px;color:#999999;text-decoration:line-through !important; line-height: 1;">
               <price-format :price="prevPrice" />
+            </span>
+            <span class="font-black text-black tracking-tight whitespace-nowrap" style="font-size:14px; line-height: 1.2;">
+              <price-format :price="currentPricing" />
             </span>
           </div>
         </div>

@@ -16,7 +16,7 @@
           <nuxt-link
             v-for="cat in staticCategories"
             :key="cat.slug"
-            :to="`/categories/${cat.slug}`"
+            :to="`/all/${cat.slug}`"
             style="display:flex;flex-direction:column;align-items:center;padding:8px 4px;text-decoration:none;border:1px solid #EEEEEE;background:#FAFAFA;transition:all 0.2s;"
             class="category-icon-item hover:shadow-md rounded-lg"
           >
@@ -42,13 +42,13 @@
         </div>
         <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
           <nuxt-link
-            v-for="brand in staticBrands"
+            v-for="brand in brands"
             :key="brand.slug"
-            :to="`/brands/${brand.slug}`"
+            :to="`/${brand.slug}/brand?brand=${brand.id}`"
             style="display:flex;align-items:center;justify-content:center;height:60px;border:1px solid #EEEEEE;background:#FFFFFF;padding:0;text-decoration:none;transition:all 0.2s;overflow:hidden;"
             class="brand-logo-item hover:shadow-sm"
           >
-            <img :src="brand.image" :alt="brand.name" style="width:100%;height:100%;object-fit:contain;transform:scale(1.4);">
+            <img :src="brand.image" :alt="brand.title" style="width:100%;height:100%;object-fit:contain;transform:scale(1.4);">
           </nuxt-link>
         </div>
       </div>
@@ -74,24 +74,23 @@ const staticCategories = [
   { name: 'Cables',           slug: 'cables',           image: '/categories/cat_cables.png' },
 ];
 
-// Static brands using original logos from the uploads folder
-const staticBrands = [
-  { name: 'HIKVISION',    slug: 'hikvision',   image: '/uploads/brand-1776677217-2.png' },
-  { name: 'GAMEMAX',      slug: 'gamemax',     image: '/uploads/brand-1776677854-7.png' },
-  { name: 'AULA',         slug: 'aula',        image: '/uploads/brand-1776856858-9.png' },
-  { name: 'DRAGON WAR',   slug: 'dragon-war',  image: '/uploads/brand-1776856909-7.png' },
-  { name: 'DATALOGIC',    slug: 'datalogic',   image: '/uploads/brand-1776856976-5.png' },
-  { name: 'EZVIZ',        slug: 'ezviz',       image: '/uploads/brand-1776857055-3.png' },
-  { name: 'GLINK',        slug: 'glink',       image: '/uploads/brand-1776857144-7.png' },
-  { name: 'HIKSEMI',      slug: 'hiksemi',     image: '/uploads/brand-1776857176-8.png' },
-  { name: 'JEQANG',       slug: 'jeqang',      image: '/uploads/brand-1776857213-5.png' },
-  { name: 'MARVO',        slug: 'marvo',       image: '/uploads/brand-1776857238-5.png' },
-  { name: 'TP-LINK',      slug: 'tp-link',     image: '/uploads/brand-1776857270-7.png' },
-  { name: 'TRANSCEND',    slug: 'transcend',   image: '/uploads/brand-1776857303-1.png' },
-  { name: 'UNIQ',         slug: 'uniq',        image: '/uploads/brand-1776857360-6.png' },
-  { name: 'XTRIKE ME',    slug: 'xtrike-me',   image: '/uploads/brand-1776857403-8.png' },
-  { name: 'YORO',         slug: 'yoro',        image: '/uploads/brand-1776857464-9.png' },
-  { name: 'DAHUA',        slug: 'dahua',       image: '/uploads/brand-1776857528-9.png' },
+const brands = [
+  { id: 9442200, title: 'HIKVISION', slug: 'HIKVISION', image: '/uploads/brand-1776677217-2.png' },
+  { id: 9442203, title: 'GAMEMAX', slug: 'gamemax', image: '/uploads/brand-1776677854-7.png' },
+  { id: 9442213, title: 'AULA', slug: 'aula', image: '/uploads/brand-1776856858-9.png' },
+  { id: 9442214, title: 'DRAGON WAR', slug: 'dragon-war', image: '/uploads/brand-1776856909-7.png' },
+  { id: 9442215, title: 'DATALOGIC', slug: 'datalogic', image: '/uploads/brand-1776856976-5.png' },
+  { id: 9442216, title: 'ezviz', slug: 'ezviz', image: '/uploads/brand-1776857055-3.png' },
+  { id: 9442217, title: 'GLINK', slug: 'glink', image: '/uploads/brand-1776857144-7.png' },
+  { id: 9442218, title: 'HIKSEMI', slug: 'hiksemi', image: '/uploads/brand-1776857176-8.png' },
+  { id: 9442219, title: 'JEQANG', slug: 'jeqang', image: '/uploads/brand-1776857213-5.png' },
+  { id: 9442220, title: 'MARVO', slug: 'marvo', image: '/uploads/brand-1776857238-5.png' },
+  { id: 9442221, title: 'tp-link', slug: 'tp-link', image: '/uploads/brand-1776857270-7.png' },
+  { id: 9442222, title: 'Transcend', slug: 'transcend', image: '/uploads/brand-1776857303-1.png' },
+  { id: 9442223, title: 'UNIQ', slug: 'uniq', image: '/uploads/brand-1776857360-6.png' },
+  { id: 9442224, title: 'XTRIKE ME', slug: 'xtrike-me', image: '/uploads/brand-1776857403-8.png' },
+  { id: 9442225, title: 'YORO', slug: 'yoro', image: '/uploads/brand-1776857464-9.png' },
+  { id: 9442226, title: 'dahua', slug: 'dahua', image: '/uploads/brand-1776857528-9.png' }
 ];
 </script>
 

@@ -7,41 +7,31 @@
           v-for="(flashSale, index) in flashSales"
           :key="index"
         >
-          <div class="flex items-center justify-between mb-8">
-            <div class="flex items-center gap-6">
-              <h2 class="text-xl font-black tracking-tight uppercase text-slate-900">{{ flashSale.title }}</h2>
-              <countdown
-                :end-time="flashSale.end_time"
-                class="bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-xs font-black"
-              />
+          <div class="flex items-center justify-between px-4 py-2" style="border-bottom:2px solid #154992;">
+            <div class="flex items-center gap-4">
+              <h2 class="font-bold uppercase" style="font-size:14px;color:#154992;">{{ flashSale.title }}</h2>
             </div>
             <NuxtLink
-              class="text-blue-600 text-xs font-bold hover:underline tracking-widest uppercase"
+              class="font-bold uppercase ml-4"
+              style="font-size:12px;color:#000000;"
               :to="`/flash-sale/${flashSale.id}`"
             >
-              {{ $t('featured.showAll') }}
+              <span class="underline">{{ $t('featured.showAll') }}</span>
             </NuxtLink>
           </div>
           <div class="area-content">
-
-            <image-slider
+            <div
               v-if="flashSale.products && flashSale.products.length"
-              :addInitEvt="true"
-              :image-count="flashSale.products.length"
+              class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"
+              style="border-top:1px solid #DDDDDD;border-left:1px solid #DDDDDD;"
             >
-              <template v-slot:content>
-                <li
-                  v-for="(value, index) in flashSale.products"
-                  :key="index"
-                  class="center-text"
-                >
-                  <flash-product-tile
-                    :flash-product="value"
-                  />
-                </li>
-              </template>
-            </image-slider>
-
+              <flash-product-tile
+                v-for="(value, index) in flashSale.products"
+                :key="index"
+                :flash-product="value"
+                style="border-right:1px solid #DDDDDD;border-bottom:1px solid #DDDDDD;"
+              />
+            </div>
           </div>
         </div>
       </div>
